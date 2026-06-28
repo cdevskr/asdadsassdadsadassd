@@ -273,6 +273,9 @@ function renderDashboard(d){
     // Security
     if(secItems.length){
         const sec=el('div','sec'); const h=el('div','sec-h'); h.textContent='GÜVENLİK'; sec.appendChild(h);
+        const slbl=el('div','sec-lock-label '+(d.locked?'locked':'open'));
+        slbl.innerHTML='<span class="bdot"></span> KAPI: '+(d.locked?'KİLİTLİ':'AÇIK');
+        sec.appendChild(slbl);
         const grid=el('div','sec-grid');
         secItems.forEach(it=>{
             const tile=el('button','sec-tile '+(it.kind||'default'));

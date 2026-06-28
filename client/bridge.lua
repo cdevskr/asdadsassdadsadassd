@@ -61,3 +61,54 @@ function Bridge.RemoveDoorTarget(handle, propertyId)
         exports['qb-target']:RemoveZone('lr_prop_' .. propertyId)
     end
 end
+
+-- ============================================================
+--  ACCESS POINT targets (storage / wardrobe / safe inside a property)
+-- ============================================================
+local accessTargetHandles = {}
+
+function Bridge.AddAccessTarget(propertyId, accessId, coords, accessType, onSelect)
+    if not Bridge.target then return end
+    local m = Config.AccessPoint.markers and Config.AccessPoint.markers[accessType]
+    local label = (m and m.label) or accessType
+    local key   = tostring(propertyId) .. '_' .. tostring(accessId)
+    local tz   = Config.AccessPoint.targetZoneSize or vector3(1.2, 1.2, 2.0)
+    local dist = Config.AccessPoint.interactDist + (Config.AccessPoint.targetZoneDistExtra or 0.4)
+    if Bridge.target == 'ox' then
+        local handle = exports.ox_target:addBoxZone({
+            coords   = vector3(coords.x, coords.y, coords.z),
+            size     = tz,
+            options  = {{
+                name     = 'lr_access_' .. key,
+                label    = label,
+                icon     = 'fas fa-box',
+                onSelect = function() onSelect() end,
+                distance = dist,
+            }},
+        })
+        accessTargetHandles[key] = handle
+    elseif Bridge.target == 'qb' then
+        local name = 'lr_access_' .. key
+        exports['qb-target']:AddBoxZone(name, vector3(coords.x, coords.y, coords.z), tz.x, tz.y, {
+            name    = name,
+            heading = 0.0,
+            minZ    = coords.z - 1.0,
+            maxZ    = coords.z + 1.5,
+        }, {
+            options  = {{ label = label, icon = 'fas fa-box', action = function() onSelect() end }},
+            distance = dist,
+        })
+        accessTargetHandles[key] = name
+    end
+end
+
+function Bridge.RemoveAllAccessTargets()
+    for key, handle in pairs(accessTargetHandles) do
+        if Bridge.target == 'ox' and handle then
+            exports.ox_target:removeZone(handle)
+        elseif Bridge.target == 'qb' then
+            exports['qb-target']:RemoveZone(handle)
+        end
+    end
+    accessTargetHandles = {}
+end

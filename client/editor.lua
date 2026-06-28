@@ -239,8 +239,12 @@ function Editor.loop()
             end
 
             if Editor.cursor then
-                -- panel mode: camera frozen, cursor active. nothing else.
-                Wait(0)
+                -- panel mode: suppress all game inputs so they don't bleed through to freecam
+                disableControls()
+                DisableControlAction(0, 32, true) -- W
+                DisableControlAction(0, 33, true) -- S
+                DisableControlAction(0, 34, true) -- A
+                DisableControlAction(0, 35, true) -- D
             else
                 disableControls()
 

@@ -55,7 +55,6 @@ files {
     'html/index.html',
     'html/style.css',
     'html/script.js',
-    'stream/starter_shells_k4mb1.ytyp',
     'html/img/catalog/*.png',
     'html/img/catalog/*.jpg',
     'html/img/catalog/*.jpeg',
@@ -68,6 +67,6 @@ files {
 
 dependencies {
     'oxmysql',
+    -- optional: 'qb-interior'  (required to stream qb-* shell models)
+    -- optional: 'ox_target' or 'qb-target'  (required for target interaction mode)
 }
-
-data_file 'DLC_ITYP_REQUEST' 'stream/starter_shells_k4mb1.ytyp'
