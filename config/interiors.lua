@@ -319,206 +319,209 @@ Config.InteriorCatalog = {
         exit  = vector3(0.0, -3.0, 195.0),
     },
 
-    -- ---------- Prefab shells (native CreateObject; NO qb-interior needed) ----------
-    -- Each spawns a frozen shell prop at the shared staging point. Set `model`
-    -- to your own shell prop (drop the asset files into this resource's stream/
-    -- folder). If the model isn't streamed it falls back to Config.ShellFallbackModel.
+    -- ---------- qb-interior shells (models streamed by qb-interior resource) ----------
+    -- Model names, spawn offsets and exit offsets taken directly from qb-interior
+    -- client/main.lua on GitHub (qbcore-framework/qb-interior).
+    -- REQUIRES: qb-interior resource running on the server so its .ydr files are
+    -- streamed.  If a model isn't loaded the script auto-falls back to
+    -- Config.ShellFallbackModel so the interior still opens instead of crashing.
     {
         id    = 'qb_michael', kind = 'shell', cat = 'shell',
         label = 'Michael Evi',
         thumb = 'qb_michael.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_michael',
+        -- spawn = where the player lands inside; exit = where the leave-marker is placed
+        spawnOffset = vector4(-9.49, 5.54, 9.91, 270.86),
+        exitOffset  = vector3(-9.49, 5.54, 9.91),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_franklin_aunt', kind = 'shell', cat = 'shell',
         label = 'Franklin Teyze Evi',
         thumb = 'qb_franklin_aunt.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_frankaunt',
+        spawnOffset = vector4(-0.36, -5.89, 1.70, 358.21),
+        exitOffset  = vector3(-0.36, -5.89, 1.70),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_ranch', kind = 'shell', cat = 'shell',
         label = 'Çiftlik (Ranch)',
         thumb = 'qb_ranch.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_ranch',
+        spawnOffset = vector4(-1.257, -5.469, 2.5, 270.57),
+        exitOffset  = vector3(-1.257, -5.469, 2.5),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_tier1', kind = 'shell', cat = 'shell',
         label = 'Tier 1 Ev',
         thumb = 'qb_tier1.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_v16mid',
+        spawnOffset = vector4(1.561, -14.305, 1.147, 2.263),
+        exitOffset  = vector3(1.561, -14.305, 1.147),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_apartment', kind = 'shell', cat = 'shell',
         label = 'Apartman Dairesi',
         thumb = 'qb_apartment.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_v16low',
+        spawnOffset = vector4(4.693, -6.015, 1.11, 358.634),
+        exitOffset  = vector3(4.693, -6.015, 1.11),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_lester', kind = 'shell', cat = 'shell',
         label = 'Lester Evi',
         thumb = 'qb_lester.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_lester',
+        spawnOffset = vector4(-1.780, -0.795, 1.1, 270.30),
+        exitOffset  = vector3(-1.780, -0.795, 1.1),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_trevor', kind = 'shell', cat = 'shell',
         label = 'Trevor Karavanı',
         thumb = 'qb_trevor.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_trevor',
+        spawnOffset = vector4(0.374, -3.789, 2.428, 358.633),
+        exitOffset  = vector3(0.374, -3.789, 2.428),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_caravan', kind = 'shell', cat = 'shell',
         label = 'Karavan',
         thumb = 'qb_caravan.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_trailer',
+        spawnOffset = vector4(-1.4, -2.1, 3.3, 358.633),
+        exitOffset  = vector3(-1.4, -2.1, 3.3),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_container', kind = 'shell', cat = 'shell',
         label = 'Konteyner',
         thumb = 'qb_container.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'container_shell',
+        spawnOffset = vector4(0.08, -5.73, 1.24, 359.32),
+        exitOffset  = vector3(0.08, -5.73, 1.24),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_furni_mid', kind = 'shell', cat = 'shell',
-        label = 'Orta Mobilyalı',
+        label = 'Mobilyalı Orta Daire',
         thumb = 'qb_furni_mid.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'furnitured_midapart',
+        spawnOffset = vector4(1.46, -10.33, 1.06, 0.39),
+        exitOffset  = vector3(1.46, -10.33, 1.06),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_motel_modern', kind = 'shell', cat = 'shell',
         label = 'Modern Motel',
         thumb = 'qb_motel_modern.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'modernhotel_shell',
+        spawnOffset = vector4(4.98, 4.35, 1.16, 179.79),
+        exitOffset  = vector3(4.98, 4.35, 1.16),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_garage_med', kind = 'shell', cat = 'shell',
         label = 'Orta Garaj',
         thumb = 'qb_garage_med.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_garagem',
+        spawnOffset = vector4(13.90, 1.63, 1.0, 87.05),
+        exitOffset  = vector3(13.90, 1.63, 1.0),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_office1', kind = 'shell', cat = 'shell',
         label = 'Ofis 1',
         thumb = 'qb_office1.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_office1',
+        spawnOffset = vector4(1.88, 5.06, 2.05, 180.07),
+        exitOffset  = vector3(1.88, 5.06, 2.05),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_store1', kind = 'shell', cat = 'shell',
         label = 'Market / Dükkan 1',
         thumb = 'qb_store1.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_store1',
+        spawnOffset = vector4(-2.61, -4.73, 1.08, 1.0),
+        exitOffset  = vector3(-2.61, -4.73, 1.08),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_warehouse1', kind = 'shell', cat = 'shell',
         label = 'Depo 1',
         thumb = 'qb_warehouse1.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_warehouse1',
+        spawnOffset = vector4(-8.95, 0.51, 1.04, 268.82),
+        exitOffset  = vector3(-8.95, 0.51, 1.04),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_apartment2', kind = 'shell', cat = 'shell',
         label = 'Apartman Dairesi 2',
         thumb = 'qb_apartment2.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_v16mid',
+        spawnOffset = vector4(1.561, -14.305, 1.147, 2.263),
+        exitOffset  = vector3(1.561, -14.305, 1.147),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_furnshell1', kind = 'shell', cat = 'shell',
         label = 'Mobilyalı Shell 1',
         thumb = 'qb_furnshell1.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'furnitured_midapart',
+        spawnOffset = vector4(1.46, -10.33, 1.06, 0.39),
+        exitOffset  = vector3(1.46, -10.33, 1.06),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_furnshell2', kind = 'shell', cat = 'shell',
         label = 'Mobilyalı Shell 2',
         thumb = 'qb_furnshell2.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'modernhotel_shell',
+        spawnOffset = vector4(4.98, 4.35, 1.16, 179.79),
+        exitOffset  = vector3(4.98, 4.35, 1.16),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_furnshell3', kind = 'shell', cat = 'shell',
         label = 'Mobilyalı Shell 3',
         thumb = 'qb_furnshell3.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_v16low',
+        spawnOffset = vector4(4.693, -6.015, 1.11, 358.634),
+        exitOffset  = vector3(4.693, -6.015, 1.11),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_unfurnshell1', kind = 'shell', cat = 'shell',
         label = 'Boş Shell 1',
         thumb = 'qb_unfurnshell1.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_v16low',
+        spawnOffset = vector4(4.693, -6.015, 1.11, 358.634),
+        exitOffset  = vector3(4.693, -6.015, 1.11),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_unfurnshell2', kind = 'shell', cat = 'shell',
         label = 'Boş Shell 2',
         thumb = 'qb_unfurnshell2.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_v16mid',
+        spawnOffset = vector4(1.561, -14.305, 1.147, 2.263),
+        exitOffset  = vector3(1.561, -14.305, 1.147),
         instance    = vector3(0.0, 0.0, 200.0),
     },
     {
         id    = 'qb_unfurnshell3', kind = 'shell', cat = 'shell',
         label = 'Boş Shell 3',
         thumb = 'qb_unfurnshell3.png',
-        model = Config.ShellFallbackModel,  -- <- kendi shell prop modelini yaz
-        spawnOffset = vector4(0.0, 0.0, 1.0, 0.0),
-        exitOffset  = vector3(0.0, -2.5, 1.0),
+        model = 'shell_ranch',
+        spawnOffset = vector4(-1.257, -5.469, 2.5, 270.57),
+        exitOffset  = vector3(-1.257, -5.469, 2.5),
         instance    = vector3(0.0, 0.0, 200.0),
     },
 }

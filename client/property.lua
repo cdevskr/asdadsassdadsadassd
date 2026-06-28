@@ -46,6 +46,36 @@ function EnterProperty(propertyId)
     TriggerServerEvent('lr_properties:tryEnter', propertyId)
 end
 
+-- Register target zones for all access points in the current property (target mode).
+-- Called on enter and whenever door data updates while inside.
+local function rebuildAccessTargets()
+    if Config.Interaction.mode ~= 'target' or not Bridge.target then return end
+    Bridge.RemoveAllAccessTargets()
+    local propertyId = State.inside
+    if not propertyId then return end
+    local p = State.doors[propertyId]
+    if not p or not p.access then return end
+    for id, ap in pairs(p.access) do
+        if ap.pos then
+            local capturedId, capturedAp = id, ap
+            Bridge.AddAccessTarget(propertyId, capturedId, capturedAp.pos, capturedAp.type, function()
+                if capturedAp.type == 'storage' then
+                    TriggerServerEvent('lr_properties:openStash', propertyId)
+                elseif capturedAp.type == 'wardrobe' then
+                    TriggerServerEvent('lr_properties:openWardrobe', propertyId)
+                elseif capturedAp.type == 'safe' then
+                    OpenSafeMenu(propertyId)
+                end
+            end)
+        end
+    end
+end
+
+-- Rebuild access targets when door data updates (e.g. new access point placed)
+AddEventHandler('lr_properties:doorsUpdated', function()
+    if State.inside then rebuildAccessTargets() end
+end)
+
 RegisterNetEvent('lr_properties:enterApproved', function(propertyId)
     local p = State.doors[propertyId]; if not p then return end
     local runtime = LoadInterior(p)
@@ -54,6 +84,8 @@ RegisterNetEvent('lr_properties:enterApproved', function(propertyId)
     State.insideData = runtime
     -- ask for the object list and spawn them
     TriggerServerEvent('lr_properties:requestObjects', propertyId)
+    -- register target zones for any already-known access points
+    rebuildAccessTargets()
 
     -- first entry & no custom exit set yet: let an authorized person place it.
     -- (config exit stays as a fallback, so nobody is ever trapped.)
@@ -133,6 +165,7 @@ function ExitProperty()
     if not propertyId then return end
     local p = State.doors[propertyId]
     clearObjects()
+    Bridge.RemoveAllAccessTargets()
     UnloadInterior(p, State.insideData)
     State.inside = nil
     State.insideData = nil
@@ -262,7 +295,7 @@ CreateThread(function()
                                 BeginTextCommandDisplayHelp('STRING')
                                 AddTextComponentSubstringPlayerName(hint)
                                 EndTextCommandDisplayHelp(0, false, true, -1)
-                                if IsControlJustReleased(0, Config.AccessPoint.openKey) then
+                                if IsDisabledControlJustReleased(0, Config.AccessPoint.openKey) then
                                     if ap.type == 'storage' then
                                         TriggerServerEvent('lr_properties:openStash', State.inside)
                                     elseif ap.type == 'wardrobe' then
