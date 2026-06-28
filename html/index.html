@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>lr_properties</title>
+</head>
+<body>
+    <div id="toasts" class="toasts top-right" aria-live="polite"></div>
+
+    <!-- centered modal: menu / input / list / interiors -->
+    <div id="root" class="root hidden" role="dialog" aria-modal="true">
+        <div id="sheet" class="sheet">
+            <header class="head">
+                <h1 id="title" class="title glow">Menü</h1>
+                <button id="close" class="iconbtn" aria-label="Kapat">
+                    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+                </button>
+            </header>
+            <div id="toolbar" class="toolbar hidden">
+                <div class="search">
+                    <svg viewBox="0 0 24 24" class="sicon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <input id="search" type="text" placeholder="Ara..." autocomplete="off" />
+                </div>
+                <div id="cats" class="cats"></div>
+            </div>
+            <main id="body" class="body"></main>
+            <footer id="foot" class="foot hidden"></footer>
+        </div>
+    </div>
+
+    <!-- management dashboard -->
+    <div id="dash" class="dash hidden" role="dialog" aria-modal="true">
+        <div class="dash-wrap">
+            <header class="dash-head">
+                <div class="dh-l">
+                    <span id="dash-sub" class="dh-sub">EV YÖNETİMİ</span>
+                    <span id="dash-name" class="dh-name glow">Mülk</span>
+                </div>
+                <div class="dh-r">
+                    <span id="dash-lock" class="badge open"><span class="bdot"></span>AÇIK</span>
+                    <button id="dash-close" class="iconbtn" aria-label="Kapat">
+                        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+                    </button>
+                </div>
+            </header>
+            <div class="dash-hero">
+                <div id="dash-ghost" class="ghost"></div>
+                <svg class="house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 11l9-7 9 7M5 10v10h14V10M9 20v-6h6v6"/></svg>
+            </div>
+            <div class="dash-grid">
+                <div id="dash-main"></div>
+                <div id="dash-side"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- decoration bottom bar -->
+    <div id="dock" class="dock hidden">
+        <div class="keys-bar">
+            <span class="kb"><b>TAB</b> imleç</span>
+            <span class="kb"><b>SOL TIK</b> koy / tut</span>
+            <span class="kb"><b>TEKER</b> döndür</span>
+            <span class="kb"><b>DEL</b> sil</span>
+            <span class="kb"><b>WASD</b> uç</span>
+            <span class="kb"><b>SPACE/CTRL</b> yukarı/aşağı</span>
+        </div>
+        <div class="dock-bar">
+            <div class="dock-l">
+                <div class="dock-title"><span class="dot"></span>Dekorasyon</div>
+                <div class="dock-tools">
+                    <button class="tool" data-tool="surface"><span class="tdot"></span>Yüzey</button>
+                    <button class="tool" data-tool="grid"><span class="tdot"></span>Grid</button>
+                </div>
+            </div>
+            <div id="dock-func" class="dock-func"></div>
+            <div class="dock-mid">
+                <div class="dock-mid-top">
+                    <div class="dock-search">
+                        <svg viewBox="0 0 24 24" class="sicon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        <input id="dock-search" type="text" placeholder="Prop ara veya model adı yaz..." autocomplete="off" />
+                    </div>
+                    <div id="dock-cats" class="dock-cats cats"></div>
+                </div>
+                <div id="dock-rail" class="dock-rail"></div>
+            </div>
+            <div class="dock-r">
+                <button id="dock-done" class="pill pill-accent">Bitir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

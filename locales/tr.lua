@@ -1,0 +1,100 @@
+Locales = Locales or {}
+
+Locales['tr'] = {
+    -- general
+    ['press_interact']    = '[E] Etkileşim',
+    ['press_knock']       = '[E] Kapıyı çal',
+    ['no_permission']     = 'Buna yetkin yok.',
+    ['not_enough_cash']   = 'Yeterli nakit yok. Gerekli: $%s',
+    ['property_locked']   = 'Burası kilitli.',
+    ['property_unlocked'] = 'Kilit açıldı.',
+    ['property_locked_now']= 'Kilitlendi.',
+    ['cancelled']         = 'İptal edildi.',
+    ['saved']             = 'Kaydedildi.',
+    ['exit_not_set']      = 'Çıkış noktası ayarlanmamış. Yerini seç: [ENTER] onayla, [BACKSPACE] atla.',
+    ['place_exit']        = 'Çıkış noktasını ayarla • ~g~ENTER~s~ onayla • ~r~BACKSPACE~s~ atla',
+    ['exit_set']          = 'Çıkış noktası kaydedildi.',
+    ['btn_set_exit']      = 'Çıkış noktasını ayarla',
+    ['enter_first']       = 'Önce mülkün içine girmelisin.',
+    ['manage_hint']       = 'Yönetim menüsü için içerideyken [%s] tuşuna bas.',
+    ['invalid_model']     = 'Geçersiz model: %s (oyunda bulunamadı / stream edilmemiş).',
+    ['place_storage']     = 'Depo noktası koy',
+    ['place_wardrobe']    = 'Dolap noktası koy',
+    ['place_safe']        = 'Kasa noktası koy',
+    ['access_placed']     = 'Erişim noktası kondu. Yanına gidip [E] ile kullan.',
+    ['place_access']      = '%s noktasını yerleştir • ~g~ENTER~s~ onayla • ~r~BACKSPACE~s~ iptal',
+    ['remove_hint']       = 'Silmek için objeye bak ve [DEL]. Çıkmak için panelden Bitir.',
+
+    -- ownership
+    ['bought_property']   = '%s satın alındı. (-$%s)',
+    ['rented_property']   = '%s kiralandı. (-$%s)',
+    ['not_for_sale']      = 'Bu mülk satışta değil.',
+    ['sold_property']     = 'Mülk satıldı.',
+    ['rent_charged']      = 'Kira ödendi: -$%s (%s)',
+    ['rent_failed']       = 'Kira ödenemedi! Mülk: %s',
+    ['evicted']           = 'Kira ödenmediği için %s mülkünden çıkarıldın.',
+
+    -- tax
+    ['tax_charged']       = 'Vergi/bakım ödendi: -$%s (%s)',
+    ['tax_warning']       = 'DİKKAT: %s için vergi ödenmedi. Ödenmezse haczedilecek.',
+    ['repossessed']       = '%s vergi borcundan dolayı haczedildi.',
+
+    -- realtor
+    ['realtor_only']      = 'Sadece emlakçılar bunu yapabilir.',
+    ['realtor_granted']   = '%s artık emlakçı.',
+    ['realtor_revoked']   = '%s artık emlakçı değil.',
+    ['placing_property']  = 'Mülk yerleştiriliyor... onayla / iptal et.',
+    ['property_created']  = 'Mülk oluşturuldu: %s',
+    ['commission_earned'] = 'Komisyon kazandın: +$%s',
+
+    -- keys
+    ['key_given']         = '%s kişisine anahtar verildi.',
+    ['key_removed']       = '%s kişisinin anahtarı alındı.',
+    ['got_key']           = '%s için anahtar aldın.',
+    ['lost_key']          = '%s için anahtarın alındı.',
+    ['no_one_home']       = 'Kapı çalındı ama açan olmadı.',
+    ['someone_knocking']  = 'Birisi kapıyı çalıyor!',
+
+    -- business
+    ['entry_fee_charged'] = 'Giriş ücreti: -$%s',
+    ['employee_hired']    = '%s işe alındı.',
+    ['employee_fired']    = '%s işten çıkarıldı.',
+    ['hired_you']         = '%s işletmesinde işe alındın.',
+    ['fired_you']         = '%s işletmesinden çıkarıldın.',
+    ['entry_fee_set']     = 'Giriş ücreti $%s olarak ayarlandı.',
+    ['safe_deposit']      = 'Kasaya yatırıldı: $%s',
+    ['safe_withdraw']     = 'Kasadan çekildi: $%s',
+    ['safe_empty']        = 'Kasada yeterli para yok.',
+    ['payroll_paid']      = 'Maaş ödendi: $%s',
+    ['payroll_fail']      = 'Kasada maaşları ödeyecek para yok!',
+
+    -- menus
+    ['menu_property']     = 'Mülk Menüsü',
+    ['menu_business']     = 'İşletme Yönetimi',
+    ['menu_owner']        = 'Sahip Menüsü',
+    ['btn_enter']         = 'İçeri Gir',
+    ['btn_lock']          = 'Kilitle / Aç',
+    ['btn_storage']       = 'Depo / Kasa',
+    ['btn_wardrobe']      = 'Kıyafet Dolabı',
+    ['btn_money_safe']    = 'Para Kasası',
+    ['btn_keys']          = 'Anahtarlar',
+    ['btn_decorate']      = 'Dekorasyon Modu',
+    ['btn_buy']           = 'Satın Al',
+    ['btn_rent']          = 'Kirala',
+    ['btn_sell']          = 'Mülkü Sat',
+    ['btn_employees']     = 'Çalışanlar',
+    ['btn_set_fee']       = 'Giriş Ücreti',
+    ['btn_exit']          = 'Çıkış',
+
+    -- placement / gizmo
+    ['catalog_title']     = 'Obje Kataloğu',
+    ['search_placeholder']= 'Ara...',
+    ['object_limit']      = 'Obje limiti doldu (%s).',
+    ['placed']            = 'Yerleştirildi.',
+    ['removed']           = 'Silindi.',
+    ['gizmo_help']        = 'Oklar: Taşı | LALT: Mod | G: Grid | B: Yüzey | Z: Geri al | SPACE: Kopyala | ENTER: Onayla | BACKSPACE: İptal',
+    ['decorate_on']       = 'Dekorasyon modu açık.',
+    ['decorate_off']      = 'Dekorasyon modu kapandı.',
+    ['light_on']          = 'Işık açıldı.',
+    ['light_off']         = 'Işık kapandı.',
+}
