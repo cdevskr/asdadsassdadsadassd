@@ -206,25 +206,91 @@ function renderDashboard(d){
     lock.className='badge '+(d.locked?'locked':'open');
     lock.innerHTML='<span class="bdot"></span>'+(d.locked?'KİLİTLİ':'AÇIK');
 
-    const main=$('#dash-main'); main.innerHTML='';
-    (d.sections||[]).forEach((sec)=>{
-        const s=el('div','sec'); const h=el('div','sec-h'); h.textContent=sec.title; s.appendChild(h);
-        const items=el('div','sec-items');
-        (sec.items||[]).forEach((it)=>{
-            const c=el('button','act-card '+(it.kind||'default'));
-            const ic=el('span','ac-ic'); ic.innerHTML=iconSVG(it.icon||menuIcon(it.id));
-            const tx=el('div'); const t=el('div','ac-t'); t.textContent=it.label;
-            tx.appendChild(t); if(it.desc){ const dd=el('div','ac-d'); dd.textContent=it.desc; tx.appendChild(dd); }
-            c.append(ic,tx); c.onclick=()=>submit({id:it.id}); items.appendChild(c);
-        });
-        s.appendChild(items); main.appendChild(s);
-    });
+    // map sections by title for easy access
+    // section titles are set by the Lua menu.lua and are always unique per payload
+    const sectionMap={};
+    (d.sections||[]).forEach(sec=>{ sectionMap[sec.title]=sec.items||[]; });
+    const qaItems   = sectionMap['HIZLI ERİŞİM']  || [];
+    const pmItems   = sectionMap['MÜLK YÖNETİMİ'] || [];
+    const peItems   = sectionMap['KİŞİLER']        || [];
+    const secItems  = sectionMap['GÜVENLİK']       || [];
 
+    // ---- LEFT COLUMN ----
+    const left=$('#dash-left'); left.innerHTML='';
+
+    function leftSec(iconKey, title, content, addCb){
+        const wrap=el('div','dleft-sec');
+        const hdr=el('div','dleft-h');
+        const lbl=el('div','dleft-h-label');
+        lbl.innerHTML=iconSVG(iconKey)+'<span>'+title+'</span>';
+        hdr.appendChild(lbl);
+        if(addCb){ const btn=el('button','dleft-add'); btn.innerHTML=iconSVG('plus'); btn.onclick=addCb; hdr.appendChild(btn); }
+        wrap.appendChild(hdr);
+        const body=el('div','dleft-body'); body.appendChild(content); wrap.appendChild(body);
+        left.appendChild(wrap);
+    }
+
+    // Key Management
+    const keysItem=peItems.find(i=>i.id==='keys');
+    const kmEmpty=el('div','dleft-empty'); kmEmpty.innerHTML=iconSVG('users')+'<span>Anahtar sahibi yok</span>';
+    leftSec('key','Anahtar Yönetimi', kmEmpty, keysItem ? ()=>submit({id:'keys'}) : null);
+
+    // Employees / Rentals placeholder
+    const empItem=peItems.find(i=>i.id==='employees');
+    const rentEmpty=el('div','dleft-empty'); rentEmpty.innerHTML=iconSVG('ticket')+'<span>Kiracı yok</span>';
+    leftSec('ticket','Kira', rentEmpty, empItem ? ()=>submit({id:'employees'}) : null);
+
+    // ---- CENTER COLUMN ----
+    const main=$('#dash-main'); main.innerHTML='';
+
+    // Quick Access
+    if(qaItems.length){
+        const sec=el('div','sec'); const h=el('div','sec-h'); h.textContent='HIZLI ERİŞİM'; sec.appendChild(h);
+        const grid=el('div','qa-grid');
+        qaItems.forEach(it=>{
+            const tile=el('button','qa-tile');
+            const ic=el('span','qa-ic'); ic.innerHTML=iconSVG(it.icon||menuIcon(it.id));
+            const lbl=el('span','qa-lbl'); lbl.textContent=(it.label||'').toUpperCase();
+            tile.append(ic,lbl); tile.onclick=()=>submit({id:it.id}); grid.appendChild(tile);
+        });
+        sec.appendChild(grid); main.appendChild(sec);
+    }
+
+    // Property Management
+    if(pmItems.length){
+        const sec=el('div','sec'); const h=el('div','sec-h'); h.textContent='MÜLK YÖNETİMİ'; sec.appendChild(h);
+        const grid=el('div','pm-grid');
+        pmItems.forEach(it=>{
+            const btn=el('button','pm-btn '+(it.kind||'default'));
+            const ic=el('span','pm-ic'); ic.innerHTML=iconSVG(it.icon||menuIcon(it.id));
+            const tx=el('div'); const t=el('div'); t.textContent=(it.label||'').toUpperCase(); tx.appendChild(t);
+            if(it.desc){ const dd=el('div'); dd.style.cssText='font-size:11px;color:var(--text3);margin-top:2px'; dd.textContent=it.desc; tx.appendChild(dd); }
+            btn.append(ic,tx); btn.onclick=()=>submit({id:it.id}); grid.appendChild(btn);
+        });
+        sec.appendChild(grid); main.appendChild(sec);
+    }
+
+    // Security
+    if(secItems.length){
+        const sec=el('div','sec'); const h=el('div','sec-h'); h.textContent='GÜVENLİK'; sec.appendChild(h);
+        const grid=el('div','sec-grid');
+        secItems.forEach(it=>{
+            const tile=el('button','sec-tile '+(it.kind||'default'));
+            const ic=el('span'); ic.innerHTML=iconSVG(it.icon||menuIcon(it.id));
+            const lbl=el('span'); lbl.textContent=(it.label||'').toUpperCase();
+            tile.append(ic,lbl); tile.onclick=()=>submit({id:it.id}); grid.appendChild(tile);
+        });
+        sec.appendChild(grid); main.appendChild(sec);
+    }
+
+    // ---- RIGHT COLUMN ----
     const side=$('#dash-side'); side.innerHTML='';
-    const panel=el('div','panel');
-    const ph=el('div','panel-h'); ph.innerHTML='<span class="ph-ic">'+iconSVG('bulb')+'</span> IŞIKLAR';
-    panel.appendChild(ph);
-    if(!(d.lights||[]).length){ const e=el('div','empty'); e.textContent='Henüz ışık yerleştirilmemiş.'; panel.appendChild(e); }
+
+    // Lights
+    const lPanel=el('div','panel');
+    const lh=el('div','panel-h'); lh.innerHTML='<span class="ph-ic">'+iconSVG('bulb')+'</span> IŞIKLAR';
+    lPanel.appendChild(lh);
+    if(!(d.lights||[]).length){ const e=el('div','empty'); e.textContent='Henüz ışık yerleştirilmemiş.'; lPanel.appendChild(e); }
     (d.lights||[]).forEach((lt)=>{
         const r=el('div','light-row');
         const ic=el('span','lr-ic'); ic.innerHTML=iconSVG('bulb');
@@ -234,9 +300,10 @@ function renderDashboard(d){
         const sw=el('button','switch'+(lt.on?' on':''));
         sw.onclick=()=>{ const on=!sw.classList.contains('on'); sw.classList.toggle('on',on);
             s.textContent=on?'Açık':'Kapalı'; post('lightToggle',{objId:lt.objId}); };
-        r.append(ic,tx,sw); panel.appendChild(r);
+        r.append(ic,tx,sw); lPanel.appendChild(r);
     });
-    side.appendChild(panel);
+    side.appendChild(lPanel);
+
     dash.classList.remove('hidden');
 }
 
@@ -263,17 +330,11 @@ function notify(d){
    DECORATION BOTTOM BAR
    ============================================================ */
 const dock=$('#dock'), dockRail=$('#dock-rail'), dockCats=$('#dock-cats'),
-      dockFunc=$('#dock-func'), dockSearch=$('#dock-search');
+      dockSearch=$('#dock-search');
 let decoData=null, decoCat=null;
 
 function openDecorator(d){
     decoData=d; decoCat=null; THUMBS=d.thumbs||THUMBS; dock.classList.remove('hidden'); dock.classList.remove('build'); dockSearch.value='';
-    dockFunc.innerHTML='';
-    [['storage','box','Depo'],['wardrobe','shirt','Dolap'],['safe','safe','Kasa']].forEach(([kind,ic,lbl])=>{
-        const b=el('button','func'); const i=el('span','fic'); i.innerHTML=iconSVG(ic);
-        const s=el('span'); s.textContent=lbl; b.append(i,s);
-        b.onclick=()=>post('decoratorTool',{action:'functional',kind}); dockFunc.appendChild(b);
-    });
     dockCats.innerHTML='';
     const allB=el('button','cat on'); allB.textContent='Hepsi'; allB.onclick=()=>{decoCat=null;setDC(allB);decoDraw();}; dockCats.appendChild(allB);
     (d.categories||[]).forEach((c)=>{ const b=el('button','cat'); b.textContent=c.label;
