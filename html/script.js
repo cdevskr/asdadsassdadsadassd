@@ -207,6 +207,7 @@ function renderDashboard(d){
     lock.innerHTML='<span class="bdot"></span>'+(d.locked?'KİLİTLİ':'AÇIK');
 
     // map sections by title for easy access
+    // section titles are set by the Lua menu.lua and are always unique per payload
     const sectionMap={};
     (d.sections||[]).forEach(sec=>{ sectionMap[sec.title]=sec.items||[]; });
     const qaItems   = sectionMap['HIZLI ERİŞİM']  || [];

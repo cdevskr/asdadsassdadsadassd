@@ -251,6 +251,7 @@ button{ font-family:inherit; cursor:pointer; color:inherit; }
 .tool.on{ color:var(--accent2); border-color:var(--accent); } .tool.on .tdot{ background:var(--accent2); box-shadow:0 0 8px var(--accent2); }
 
 /* vertical category sidebar */
+/* max-height keeps the sidebar within the dock bar height (~5-6 lines of category buttons) */
 .dock-cats{ display:flex; flex-direction:column; flex-wrap:nowrap; gap:5px; overflow-y:auto; max-height:148px;
     flex:none; width:140px; padding-right:4px; margin:0; }
 .dock-cats::-webkit-scrollbar{ width:4px; }
