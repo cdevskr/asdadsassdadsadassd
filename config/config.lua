@@ -58,6 +58,9 @@ Config.AccessPoint = {
     openKey    = 38,                    -- E
     drawDist   = 6.0,
     interactDist = 1.6,
+    -- target zone dimensions (used when Interaction.mode = 'target')
+    targetZoneSize = vector3(1.2, 1.2, 2.0),
+    targetZoneDistExtra = 0.4,          -- added on top of interactDist for target range
     markers = {
         storage  = { label = 'Depo',   color = { r = 255, g = 159, b = 10  } },
         wardrobe = { label = 'Dolap',  color = { r = 90,  g = 200, b = 250 } },

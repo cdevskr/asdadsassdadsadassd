@@ -57,13 +57,12 @@ local function rebuildAccessTargets()
     if not p or not p.access then return end
     for id, ap in pairs(p.access) do
         if ap.pos then
-            local capturedId, capturedAp = id, ap
-            Bridge.AddAccessTarget(propertyId, capturedId, capturedAp.pos, capturedAp.type, function()
-                if capturedAp.type == 'storage' then
+            Bridge.AddAccessTarget(propertyId, id, ap.pos, ap.type, function()
+                if ap.type == 'storage' then
                     TriggerServerEvent('lr_properties:openStash', propertyId)
-                elseif capturedAp.type == 'wardrobe' then
+                elseif ap.type == 'wardrobe' then
                     TriggerServerEvent('lr_properties:openWardrobe', propertyId)
-                elseif capturedAp.type == 'safe' then
+                elseif ap.type == 'safe' then
                     OpenSafeMenu(propertyId)
                 end
             end)
