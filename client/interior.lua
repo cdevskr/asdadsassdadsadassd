@@ -68,6 +68,9 @@ function LoadInterior(p)
     -- per-property saved exit overrides the config exit (placed by the owner)
     if p.exit and p.exit.x then
         runtime.exit = vector3(p.exit.x + 0.0, p.exit.y + 0.0, p.exit.z + 0.0)
+        -- also use the saved exit as the spawn point so players always land there
+        local heading = runtime.spawn and runtime.spawn.w or 0.0
+        runtime.spawn = vector4(p.exit.x + 0.0, p.exit.y + 0.0, p.exit.z + 0.0, heading)
     end
 
     -- teleport in

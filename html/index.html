@@ -45,13 +45,16 @@
                     </button>
                 </div>
             </header>
-            <div class="dash-hero">
-                <div id="dash-ghost" class="ghost"></div>
-                <svg class="house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 11l9-7 9 7M5 10v10h14V10M9 20v-6h6v6"/></svg>
-            </div>
             <div class="dash-grid">
-                <div id="dash-main"></div>
-                <div id="dash-side"></div>
+                <div id="dash-left" class="dash-col"></div>
+                <div class="dash-center">
+                    <div class="dash-hero">
+                        <div id="dash-ghost" class="ghost"></div>
+                        <svg class="house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 11l9-7 9 7M5 10v10h14V10M9 20v-6h6v6"/></svg>
+                    </div>
+                    <div id="dash-main" class="dash-main-scroll"></div>
+                </div>
+                <div id="dash-side" class="dash-col"></div>
             </div>
         </div>
     </div>
@@ -74,14 +77,11 @@
                     <button class="tool" data-tool="grid"><span class="tdot"></span>Grid</button>
                 </div>
             </div>
-            <div id="dock-func" class="dock-func"></div>
+            <div id="dock-cats" class="dock-cats cats"></div>
             <div class="dock-mid">
-                <div class="dock-mid-top">
-                    <div class="dock-search">
-                        <svg viewBox="0 0 24 24" class="sicon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                        <input id="dock-search" type="text" placeholder="Prop ara veya model adı yaz..." autocomplete="off" />
-                    </div>
-                    <div id="dock-cats" class="dock-cats cats"></div>
+                <div class="dock-search">
+                    <svg viewBox="0 0 24 24" class="sicon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <input id="dock-search" type="text" placeholder="Eşya ara veya model adı yaz..." autocomplete="off" />
                 </div>
                 <div id="dock-rail" class="dock-rail"></div>
             </div>

@@ -188,6 +188,7 @@ function OpenManageMenu(propertyId, acc)
         sections = sections,
         lights   = lights,
     }, function(sel)
+        CloseMenu()
         local id = sel and sel.id
         if not id then return end
         if id == 'lock' then TriggerServerEvent('lr_properties:toggleLock', propertyId)
